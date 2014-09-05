@@ -133,4 +133,6 @@
     <dimen name="tab_divider_padding">12dp</dimen>
     <!-- Size of text in tabs. -->
     <dimen name="tab_text_size">12sp</dimen>
+
+    <dimen name="speed_dial_list_contact_photo_size">40dp</dimen>
 </resources>
