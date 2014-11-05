@@ -39,7 +39,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.Settings;
-import android.telephony.MSimTelephonyManager;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -55,7 +54,6 @@ import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.internal.telephony.MSimConstants;
 
 public class SpeedDialListActivity extends ListActivity implements
         AdapterView.OnItemClickListener, PopupMenu.OnMenuItemClickListener {
@@ -195,16 +193,6 @@ public class SpeedDialListActivity extends ListActivity implements
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
             Intent intent = new Intent(ACTION_ADD_VOICEMAIL);
-            if (MSimTelephonyManager.getDefault().isMultiSimEnabled()) {
-                //if multi sim enable, should let user select which sim to be set.
-                int sub = Settings.Global.getInt(getContentResolver(),
-                    Settings.Global.MULTI_SIM_VOICE_CALL_SUBSCRIPTION, 0);
-                intent.setClassName("com.android.phone",
-                        "com.android.phone.MSimCallFeaturesSubSetting");
-                intent.putExtra(MSimConstants.SUBSCRIPTION_KEY, sub);
-            } else {
-                intent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
-            }
             try {
                 startActivity(intent);
             } catch(ActivityNotFoundException e) {
