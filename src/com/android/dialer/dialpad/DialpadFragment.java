@@ -1629,7 +1629,6 @@ public class DialpadFragment extends Fragment
             case R.id.menu_add_wait:
                 updateDialString(WAIT);
                 return true;
-                return true;
             case R.id.speed_dial:
                 startActivity(new Intent(getActivity(), SpeedDialListActivity.class));
                 return true;
